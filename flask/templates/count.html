@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% block title %}MedCount - login{% endblock title %}
+{% block content %}
+{% block navs %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Data Entry</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        </ul>
+    </div>
+{% endblock navs %}
+{% with messages= get_flashed_messages()%}
+    {%if messages %}
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<h1>{{patient}}</h1>
+{% endblock content %}

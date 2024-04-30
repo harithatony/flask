@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}MedCount - login{% endblock title %}
+{% block content %}
+{% block navs %}
+{% endblock navs %}
+{% with messages= get_flashed_messages()%}
+    {%if messages %}
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

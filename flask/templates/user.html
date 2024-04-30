@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}MedCount - User{% endblock title %}
+{% block navs %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Data Entry</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        </ul>
+    </div>
+{% endblock navs %}
+{% block content %}
+    {% with messages= get_flashed_messages()%}
+        {%if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/count" method="post">
+        <label for="patient_name">Patient Name:</label><br>
+        <input type="text" id="patient" name="patient" required>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock content %}
