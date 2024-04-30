@@ -24,26 +24,28 @@ def login():
             return redirect(url_for("user"))
         return render_template("login.html")
 
-@app.route("/user",methods=["POST","GET"])
+@app.route("/user", methods=["POST", "GET"])
 def user():
-    if request.method =="POST":
-        print("hello")
-        patient = request.form.get("patient")
-        print(patient)
-        session["patient"] = patient
-        flash("Data entered Successfully")
-        return redirect(url_for("count"))
-    else:
-        if "username" in session:
-            user = session["username"]
-            return redirect(url_for("user"))
+    if "username" in session:
+        user = session["username"]
+        if request.method == "POST":
+            patient = request.form.get("patient")
+            session["patient"] = patient
+            flash("Data entered successfully")
+            return redirect(url_for("count"))
         else:
-            flash("You are not  logged IN!")
-            return redirect(url_for("login.html"))
+            print(session)
+            return render_template("user.html", user=user)
+    else:
+        print(session)
+        flash("You are not logged in!")
+        return redirect(url_for("login"))
+
     
 @app.route("/count",methods=["GET","POST"])
 def count():
     print("helloq")
+    print(session)
     if "patient" in session:
         patients = session["patient"]
         user = session
